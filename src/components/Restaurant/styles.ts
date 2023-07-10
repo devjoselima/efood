@@ -7,6 +7,12 @@ export const Card = styled.div`
   margin-top: 80px;
   position: relative;
   border: 1px solid ${colors.pink};
+
+  > img {
+    width: 100%;
+    height: 217px;
+    object-fit: cover;
+  }
 `
 export const TagContainer = styled.div`
   position: absolute;

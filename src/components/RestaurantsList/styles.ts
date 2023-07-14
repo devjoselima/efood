@@ -10,6 +10,6 @@ export const ContainerProducts = styled.div`
   @media (max-width: ${breakpoints.tablet}) {
     grid-template-columns: 1fr;
     justify-items: center;
-    max-width: 95%;
+    max-width: 100%;
   }
 `

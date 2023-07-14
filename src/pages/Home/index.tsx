@@ -1,45 +1,42 @@
-import { useEffect, useState } from 'react'
-
 import RestaurantList from '../../components/RestaurantsList'
 import Header from '../../components/Header'
+import { useGetRestaurantsQuery } from '../../services/api'
+
+export interface Dish {
+  id: number
+  nome: string
+  foto: string
+  descricao: string
+  preco: number
+  porcao: string
+}
 
 export type Restaurants = {
   id: number
   titulo: string
-  destacado: boolean
+  capa: string
   tipo: string
+  destacado: boolean
   avaliacao: number
   descricao: string
-  capa: string
-  cardapio: {
-    foto: string
-    preco: number
-    id: number
-    nome: string
-    descricao: string
-    porcao: string
-  }
+  cardapio: Dish[]
 }
 
 const Home = () => {
-  const [restaurant, setRestaurant] = useState<Restaurants[]>([])
+  const { data: restaurantes } = useGetRestaurantsQuery()
 
-  useEffect(() => {
-    fetch('https://fake-api-tau.vercel.app/api/efood/restaurantes')
-      .then((res) => res.json())
-      .then((res) => setRestaurant(res))
-  })
+  if (restaurantes) {
+    return (
+      <>
+        <Header />
+        <div className="container">
+          <RestaurantList restaurants={restaurantes} />
+        </div>
+      </>
+    )
+  }
 
-  if (!restaurant) <h3>Carregando...</h3>
-
-  return (
-    <>
-      <Header />
-      <div className="container">
-        <RestaurantList restaurants={restaurant} />
-      </div>
-    </>
-  )
+  return <h3>Carregando...</h3>
 }
 
 export default Home

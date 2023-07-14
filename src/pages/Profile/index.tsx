@@ -1,47 +1,39 @@
-import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
-
 import BannerDish from '../../components/BannerDish'
-import DishCardList from '../../components/DishCardList'
+
 import ProfileHeader from '../../components/ProfileHeader'
+import { useGetDishesQuery } from '../../services/api'
 
-export type Dishes = {
-  id: number
-  nome: string
-  foto: string
-  descricao: string
-  preco: number
-  porcao: string
-}
+import { Dish } from '../Home'
+import DishCard from '../../components/DishCard'
 
-export type RestaurantsInfos = {
-  capa: string
-  titulo: string
-  tipo: string
-}
+import { ContainerList } from './styles'
 
 const Profile = () => {
   const { id } = useParams()
-  const [dish, setDish] = useState<Dishes[]>([])
-  const [restaurantInfos, setRestaurantInfos] = useState<RestaurantsInfos>()
+  const { data: dish } = useGetDishesQuery(id!)
 
-  useEffect(() => {
-    fetch(`https://fake-api-tau.vercel.app/api/efood/restaurantes/${id}`)
-      .then((res) => res.json())
-      .then((res) => {
-        setDish(res.cardapio)
-        setRestaurantInfos(res)
-      })
-  }, [id])
+  if (!dish) {
+    return <h3>Carregando...</h3>
+  }
 
-  if (!dish) <h3>carregando...</h3>
+  const renderBannerDish = () => {
+    if (dish) {
+      return <BannerDish infos={dish} />
+    }
+    return null
+  }
 
   return (
     <>
       <ProfileHeader />
-      {restaurantInfos && <BannerDish infos={restaurantInfos} />}
+      {renderBannerDish()}
       <div className="container">
-        <DishCardList dishes={dish} />
+        <ContainerList>
+          {dish?.cardapio.map((dish: Dish) => (
+            <DishCard key={dish.id} dish={dish} />
+          ))}
+        </ContainerList>
       </div>
     </>
   )

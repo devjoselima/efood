@@ -1,17 +1,21 @@
-import { RestaurantsInfos } from '../../pages/Profile'
+import { Restaurants } from '../../pages/Home'
 import { Banner, TipoPrato, NomePrato } from './styles'
 
 type Props = {
-  infos: RestaurantsInfos
+  infos: Restaurants
 }
 
-const BannerDish = ({ infos }: Props) => (
-  <Banner style={{ backgroundImage: `url(${infos?.capa})` }}>
-    <div className="container">
-      <TipoPrato>{infos?.tipo}</TipoPrato>
-      <NomePrato>{infos?.titulo}</NomePrato>
-    </div>
-  </Banner>
-)
+const BannerDish = ({ infos }: Props) => {
+  const { capa, tipo, titulo } = infos
+
+  return (
+    <Banner style={{ backgroundImage: `url(${capa})` }}>
+      <div className="container">
+        <TipoPrato>{tipo}</TipoPrato>
+        <NomePrato>{titulo}</NomePrato>
+      </div>
+    </Banner>
+  )
+}
 
 export default BannerDish

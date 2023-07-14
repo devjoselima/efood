@@ -1,12 +1,25 @@
+import { useDispatch } from 'react-redux'
 import { useState } from 'react'
 
 import { Card, Modal, ModalContent, Overlay } from './styles'
 
 import close from '../../assets/fechar.png'
 
-import { Dishes } from '../../pages/Profile'
+import { Dish } from '../../pages/Home'
+import { open } from '../../store/reducers/cart'
 
-const DishCard = ({ nome, descricao, foto, porcao, preco }: Dishes) => {
+type Props = {
+  dish: Dish
+}
+
+const DishCard = ({ dish }: Props) => {
+  const dispatch = useDispatch()
+  const { foto, descricao, nome, porcao, preco } = dish
+
+  const openCart = () => {
+    dispatch(open())
+  }
+
   const [modal, setModal] = useState({
     isVisible: false
   })
@@ -51,7 +64,14 @@ const DishCard = ({ nome, descricao, foto, porcao, preco }: Dishes) => {
               <h3>{nome}</h3>
               <p>{descricao}</p>
               <span>{porcao}</span>
-              <button>Adicionar ao carrinho - {formatPrice(preco)}</button>
+              <button
+                onClick={() => {
+                  openCart()
+                  closeModal()
+                }}
+              >
+                Adicionar ao carrinho - {formatPrice(preco)}
+              </button>
             </div>
           </main>
         </ModalContent>

@@ -1,19 +1,30 @@
 import { useDispatch, useSelector } from 'react-redux'
 
-import { close } from '../../store/reducers/cart'
+import { close, remove } from '../../store/reducers/cart'
 
 import { Overlay, CartContainer, SideBar, CartItem, Prices } from './styles'
 import { RootReducer } from '../../store'
 
-import prato from '../../assets/prato.png'
+import { formatPrice } from '../DishCard'
+
 import trash from '../../assets/lixeira.svg'
 
 const Cart = () => {
   const dispatch = useDispatch()
-  const { isOpen } = useSelector((state: RootReducer) => state.cart)
+  const { isOpen, items } = useSelector((state: RootReducer) => state.cart)
 
   const closeCart = () => {
     dispatch(close())
+  }
+
+  const getTotalPrice = () => {
+    return items.reduce((acumulator, currentPrice) => {
+      return (acumulator += currentPrice.preco)
+    }, 0)
+  }
+
+  const removeFromCart = (id: number) => {
+    dispatch(remove(id))
   }
 
   return (
@@ -21,17 +32,23 @@ const Cart = () => {
       <Overlay onClick={closeCart} />
       <SideBar className={isOpen ? 'slideOpen' : 'slideClose'}>
         <ul>
-          <CartItem>
-            <img src={prato} alt="" />
-            <div>
-              <h3>Nome do prato</h3>
-              <p>60,90</p>
-            </div>
-            <img src={trash} />
-          </CartItem>
+          {items.map((item) => (
+            <CartItem key={item.id}>
+              <img src={item.foto} alt={item.nome} />
+              <div>
+                <h3>{item.nome}</h3>
+                <p>{formatPrice(item.preco)}</p>
+              </div>
+              <img
+                src={trash}
+                alt="lixeira"
+                onClick={() => removeFromCart(item.id)}
+              />
+            </CartItem>
+          ))}
         </ul>
         <Prices>
-          Valor total <span>R$ 182,70</span>
+          Valor total <span>{formatPrice(getTotalPrice())}</span>
         </Prices>
         <button>Continuar com a entrega</button>
       </SideBar>

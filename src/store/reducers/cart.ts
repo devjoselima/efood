@@ -1,8 +1,8 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { Restaurants } from '../../pages/Home'
+import { Dish } from '../../pages/Home'
 
 type CartState = {
-  items: Restaurants[]
+  items: Dish[]
   isOpen: boolean
 }
 
@@ -15,8 +15,17 @@ const cartSlice = createSlice({
   name: 'cart',
   initialState,
   reducers: {
-    add: (state, action: PayloadAction<Restaurants>) => {
-      state.items.push(action.payload)
+    add: (state, action: PayloadAction<Dish>) => {
+      const dish = state.items.find((item) => item.id === action.payload.id)
+
+      if (!dish) {
+        state.items.push(action.payload)
+      } else {
+        alert('Esse prato ja foi adicionado!')
+      }
+    },
+    remove: (state, action: PayloadAction<number>) => {
+      state.items = state.items.filter((item) => item.id !== action.payload)
     },
     open: (state) => {
       state.isOpen = true
@@ -27,5 +36,5 @@ const cartSlice = createSlice({
   }
 })
 
-export const { add, open, close } = cartSlice.actions
+export const { add, remove, open, close } = cartSlice.actions
 export default cartSlice.reducer

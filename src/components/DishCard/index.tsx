@@ -6,10 +6,16 @@ import { Card, Modal, ModalContent, Overlay } from './styles'
 import close from '../../assets/fechar.png'
 
 import { Dish } from '../../pages/Home'
-import { open } from '../../store/reducers/cart'
+import { add, open } from '../../store/reducers/cart'
 
 type Props = {
   dish: Dish
+}
+export const formatPrice = (price: number) => {
+  return new Intl.NumberFormat('pt-BR', {
+    style: 'currency',
+    currency: 'BRL'
+  }).format(price)
 }
 
 const DishCard = ({ dish }: Props) => {
@@ -18,6 +24,11 @@ const DishCard = ({ dish }: Props) => {
 
   const openCart = () => {
     dispatch(open())
+  }
+
+  const addToCart = () => {
+    dispatch(add(dish))
+    openCart()
   }
 
   const [modal, setModal] = useState({
@@ -33,13 +44,6 @@ const DishCard = ({ dish }: Props) => {
       return description.slice(0, 171) + '...'
     }
     return description
-  }
-
-  const formatPrice = (price: number) => {
-    return new Intl.NumberFormat('pt-BR', {
-      style: 'currency',
-      currency: 'BRL'
-    }).format(price)
   }
 
   return (
@@ -66,7 +70,7 @@ const DishCard = ({ dish }: Props) => {
               <span>{porcao}</span>
               <button
                 onClick={() => {
-                  openCart()
+                  addToCart()
                   closeModal()
                 }}
               >

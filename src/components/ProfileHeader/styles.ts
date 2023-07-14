@@ -5,6 +5,10 @@ export const HeaderProfile = styled.header`
   display: flex;
   justify-content: space-around;
   align-items: center;
+
+  p:last-child {
+    cursor: pointer;
+  }
 `
 
 export const LogoHeader = styled.img`

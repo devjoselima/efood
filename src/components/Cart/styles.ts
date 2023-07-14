@@ -77,6 +77,7 @@ export const CartItem = styled.div`
   width: 100%;
   position: relative;
   padding: 8px;
+  margin-top: 16px;
 
   img:first-child {
     height: 80px;
@@ -94,6 +95,7 @@ export const CartItem = styled.div`
     position absolute;
     bottom: 8px;
     right: 8px;
+    cursor: pointer;
   }
 `
 

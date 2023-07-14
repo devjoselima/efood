@@ -13,7 +13,7 @@ export const Logo = styled.img`
 `
 
 export const Title = styled.h1`
-  font-size: 36px
+  font-size: 36px;
   font-weight: bold;
   width: 539px;
   line-height: 42px;

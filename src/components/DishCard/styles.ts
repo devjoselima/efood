@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { colors } from '../../styles'
+import { breakpoints, colors } from '../../styles'
 
 export const Card = styled.div`
   background-color: ${colors.pink};
@@ -15,14 +15,13 @@ export const Card = styled.div`
     object-fit: cover;
   }
 
-
   h3 {
-    margin 8px 0;
+    margin: 8px 0;
   }
 
   p {
     font-size: 14px;
-    line-height: 22px;  
+    line-height: 22px;
     margin-bottom: 8px;
   }
 
@@ -93,6 +92,10 @@ export const ModalContent = styled.div`
     h3 {
       font-size: 18px;
       margin-bottom: 16px;
+
+      @media (max-width: ${breakpoints.tablet}) {
+        margin-top: 8px;
+      }
     }
 
     p {
@@ -115,5 +118,14 @@ export const ModalContent = styled.div`
       font-weight: bold;
       cursor: pointer;
     }
+
+    @media (max-width: ${breakpoints.tablet}) {
+      flex-direction: column;
+    }
+  }
+
+  @media (max-width: ${breakpoints.tablet}) {
+    max-width: 80%;
+    height: 600px;
   }
 `

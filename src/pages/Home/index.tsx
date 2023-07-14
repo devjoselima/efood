@@ -36,7 +36,12 @@ const Home = () => {
     )
   }
 
-  return <h3>Carregando...</h3>
+  return (
+    <>
+      <Header />
+      <h3>Carregando...</h3>
+    </>
+  )
 }
 
 export default Home

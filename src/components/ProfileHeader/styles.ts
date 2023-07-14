@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import { breakpoints } from '../../styles'
 
 export const HeaderProfile = styled.header`
   height: 186px;
@@ -13,4 +14,8 @@ export const HeaderProfile = styled.header`
 
 export const LogoHeader = styled.img`
   height: 57px;
+
+  @media (max-width: ${breakpoints.tablet}) {
+    width: 100%;
+  }
 `

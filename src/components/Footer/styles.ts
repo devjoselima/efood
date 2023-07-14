@@ -20,6 +20,6 @@ export const RedesSociais = styled.div`
 `
 export const TextoFooter = styled.p`
   font-size: 10px;
-  width 480px;
+  width: 90%;
   text-align: center;
 `

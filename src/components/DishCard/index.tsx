@@ -1,16 +1,19 @@
-import { useDispatch } from 'react-redux'
-import { useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 
-import { Card, Modal, ModalContent, Overlay } from './styles'
+import { add, open } from '../../store/reducers/cart'
+import { modalClose, modalOpen } from '../../store/reducers/modal'
+import { RootReducer } from '../../store'
+
+import { Dish } from '../../pages/Home'
 
 import close from '../../assets/fechar.png'
 
-import { Dish } from '../../pages/Home'
-import { add, open } from '../../store/reducers/cart'
+import { Card, Modal, ModalContent, Overlay } from './styles'
 
 type Props = {
   dish: Dish
 }
+
 export const formatPrice = (price: number) => {
   return new Intl.NumberFormat('pt-BR', {
     style: 'currency',
@@ -20,6 +23,8 @@ export const formatPrice = (price: number) => {
 
 const DishCard = ({ dish }: Props) => {
   const dispatch = useDispatch()
+  const modal = useSelector((state: RootReducer) => state.modal.isVisible)
+
   const { foto, descricao, nome, porcao, preco } = dish
 
   const openCart = () => {
@@ -31,13 +36,8 @@ const DishCard = ({ dish }: Props) => {
     openCart()
   }
 
-  const [modal, setModal] = useState({
-    isVisible: false
-  })
-
-  const closeModal = () => {
-    setModal({ isVisible: false })
-  }
+  const handleModal = () =>
+    modal ? dispatch(modalClose()) : dispatch(modalOpen())
 
   const formatDescription = (description: string) => {
     if (description.length > 174) {
@@ -52,15 +52,13 @@ const DishCard = ({ dish }: Props) => {
         <img src={foto} alt={nome} />
         <h3>{nome}</h3>
         <p>{formatDescription(descricao)}</p>
-        <button onClick={() => setModal({ isVisible: true })}>
-          Adicionar ao carrinho
-        </button>
+        <button onClick={() => handleModal()}>Adicionar ao carrinho</button>
       </Card>
 
-      <Modal className={modal.isVisible ? 'visible' : ''}>
+      <Modal className={modal ? 'visible' : ''}>
         <ModalContent className="container">
           <header>
-            <img src={close} alt="fechar modal" onClick={closeModal} />
+            <img src={close} alt="fechar modal" onClick={handleModal} />
           </header>
           <main>
             <img src={foto} />
@@ -71,7 +69,7 @@ const DishCard = ({ dish }: Props) => {
               <button
                 onClick={() => {
                   addToCart()
-                  closeModal()
+                  handleModal()
                 }}
               >
                 Adicionar ao carrinho - {formatPrice(preco)}
@@ -79,7 +77,7 @@ const DishCard = ({ dish }: Props) => {
             </div>
           </main>
         </ModalContent>
-        <Overlay onClick={closeModal}></Overlay>
+        <Overlay onClick={handleModal}></Overlay>
       </Modal>
     </>
   )

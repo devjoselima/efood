@@ -36,8 +36,9 @@ const DishCard = ({ dish }: Props) => {
     openCart()
   }
 
-  const handleModal = () =>
+  const handleModal = () => {
     modal ? dispatch(modalClose()) : dispatch(modalOpen())
+  }
 
   const formatDescription = (description: string) => {
     if (description.length > 174) {

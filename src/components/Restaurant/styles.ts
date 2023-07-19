@@ -48,7 +48,7 @@ export const Description = styled.p`
 
 export const Button = styled(Link)`
   background-color: ${colors.pink};
-  color: ${colors.NavajoWhite};
+  color: ${colors.navajoWhite};
   font-size: 14px;
   font-weight: bold;
   padding: 4px 6px;
@@ -58,7 +58,7 @@ export const Button = styled(Link)`
 `
 export const Tag = styled.span`
   background-color: ${colors.pink};
-  color: ${colors.NavajoWhite};
+  color: ${colors.navajoWhite};
   font-size: 14px;
   font-weight: bold;
   padding: 4px 6px;

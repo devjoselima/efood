@@ -1,8 +1,16 @@
 import { useDispatch, useSelector } from 'react-redux'
 
-import { close, remove } from '../../store/reducers/cart'
+import { closeCart, remove } from '../../store/reducers/cart'
+import { openCheckout } from '../../store/reducers/checkout'
 
-import { Overlay, CartContainer, SideBar, CartItem, Prices } from './styles'
+import {
+  Overlay,
+  CartContainer,
+  SideBar,
+  CartItem,
+  Prices,
+  ButtonCart
+} from './styles'
 import { RootReducer } from '../../store'
 
 import { formatPrice } from '../DishCard'
@@ -13,8 +21,13 @@ const Cart = () => {
   const dispatch = useDispatch()
   const { isOpen, items } = useSelector((state: RootReducer) => state.cart)
 
-  const closeCart = () => {
-    dispatch(close())
+  const CloseCart = () => {
+    dispatch(closeCart())
+  }
+
+  const openCheck = () => {
+    dispatch(openCheckout())
+    dispatch(closeCart())
   }
 
   const getTotalPrice = () => {
@@ -29,7 +42,7 @@ const Cart = () => {
 
   return (
     <CartContainer className={isOpen ? 'is-open' : ''}>
-      <Overlay onClick={closeCart} />
+      <Overlay onClick={CloseCart} />
       <SideBar className={isOpen ? 'slideOpen' : 'slideClose'}>
         <ul>
           {items.map((item) => (
@@ -50,7 +63,7 @@ const Cart = () => {
         <Prices>
           Valor total <span>{formatPrice(getTotalPrice())}</span>
         </Prices>
-        <button>Continuar com a entrega</button>
+        <ButtonCart onClick={openCheck}>Continuar com a entrega</ButtonCart>
       </SideBar>
     </CartContainer>
   )

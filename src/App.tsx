@@ -8,6 +8,7 @@ import Footer from './components/Footer'
 
 import { GlobalCss } from './styles'
 import Cart from './components/Cart'
+import Checkout from './components/Checkout'
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         <Rotas />
         <Footer />
         <Cart />
+        <Checkout />
       </BrowserRouter>
     </Provider>
   )

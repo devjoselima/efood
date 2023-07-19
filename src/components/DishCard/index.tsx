@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux'
 
-import { add, open } from '../../store/reducers/cart'
+import { add, openCart } from '../../store/reducers/cart'
 import { modalClose, modalOpen } from '../../store/reducers/modal'
 import { RootReducer } from '../../store'
 
@@ -27,13 +27,13 @@ const DishCard = ({ dish }: Props) => {
 
   const { foto, descricao, nome, porcao, preco } = dish
 
-  const openCart = () => {
-    dispatch(open())
+  const OpenCart = () => {
+    dispatch(openCart())
   }
 
   const addToCart = () => {
     dispatch(add(dish))
-    openCart()
+    OpenCart()
   }
 
   const handleModal = () => {

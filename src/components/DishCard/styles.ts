@@ -5,7 +5,7 @@ export const Card = styled.div`
   background-color: ${colors.pink};
   padding: 8px;
   width: 320px;
-  color: ${colors.NavajoWhite};
+  color: ${colors.navajoWhite};
   margin-bottom: 32px;
   position: relative;
 
@@ -27,7 +27,7 @@ export const Card = styled.div`
 
   button {
     width: 100%;
-    background-color: ${colors.NavajoWhite};
+    background-color: ${colors.navajoWhite};
     border: none;
     color: ${colors.pink};
     font-weight: bold;
@@ -110,7 +110,7 @@ export const ModalContent = styled.div`
     }
 
     button {
-      background-color: ${colors.NavajoWhite};
+      background-color: ${colors.navajoWhite};
       padding: 4px 8px;
       font-size: 14px;
       border: none;

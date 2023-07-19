@@ -6,14 +6,14 @@ import { HeaderProfile, LogoHeader } from './styles'
 
 import fundo from '../../assets/fundo.png'
 import logo from '../../assets/logo.svg'
-import { open } from '../../store/reducers/cart'
+import { openCart } from '../../store/reducers/cart'
 
 const ProfileHeader = () => {
   const dispatch = useDispatch()
   const { items } = useSelector((state: RootReducer) => state.cart)
 
-  const openCart = () => {
-    dispatch(open())
+  const OpenCart = () => {
+    dispatch(openCart())
   }
 
   return (
@@ -22,7 +22,7 @@ const ProfileHeader = () => {
       <Link to={'/'}>
         <LogoHeader src={logo} alt="efood" />
       </Link>
-      <p onClick={openCart}>{items.length} produto(s) no carrinho</p>
+      <p onClick={OpenCart}>{items.length} produto(s) no carrinho</p>
     </HeaderProfile>
   )
 }

@@ -42,16 +42,17 @@ export const CartContainer = styled.div`
   &.is-open {
     display: flex;
   }
+`
 
-  button {
-    width: 100%;
-    background-color: ${colors.NavajoWhite};
-    color: ${colors.pink};
-    font-weight: bold;
-    border: none;
-    padding 4px 0;
-    font-size: 14px;
-  }
+export const ButtonCart = styled.button`
+  width: 100%;
+  background-color: ${colors.navajoWhite};
+  color: ${colors.pink};
+  font-weight: bold;
+  border: none;
+  padding: 4px 0;
+  font-size: 14px;
+  cursor: pointer;
 `
 
 export const SideBar = styled.aside`
@@ -73,7 +74,7 @@ export const SideBar = styled.aside`
 
 export const CartItem = styled.div`
   display: flex;
-  background-color: ${colors.NavajoWhite};
+  background-color: ${colors.navajoWhite};
   width: 100%;
   position: relative;
   padding: 8px;
@@ -92,7 +93,7 @@ export const CartItem = styled.div`
   }
 
   img:last-child {
-    position absolute;
+    position: absolute;
     bottom: 8px;
     right: 8px;
     cursor: pointer;
@@ -100,11 +101,11 @@ export const CartItem = styled.div`
 `
 
 export const Prices = styled.div`
-  color: ${colors.NavajoWhite};
+  color: ${colors.navajoWhite};
   font-weight: bold;
   font-size: 14px;
   display: flex;
   justify-content: space-between;
   width: 100%;
-  margin 40px 0 16px 0;
+  margin: 40px 0 16px 0;
 `

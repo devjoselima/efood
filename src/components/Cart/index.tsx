@@ -3,14 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { closeCart, remove } from '../../store/reducers/cart'
 import { openCheckout } from '../../store/reducers/checkout'
 
-import {
-  Overlay,
-  CartContainer,
-  SideBar,
-  CartItem,
-  Prices,
-  ButtonCart
-} from './styles'
+import * as S from './styles'
 import { RootReducer } from '../../store'
 
 import { formatPrice } from '../DishCard'
@@ -41,31 +34,41 @@ const Cart = () => {
   }
 
   return (
-    <CartContainer className={isOpen ? 'is-open' : ''}>
-      <Overlay onClick={CloseCart} />
-      <SideBar className={isOpen ? 'slideOpen' : 'slideClose'}>
-        <ul>
-          {items.map((item) => (
-            <CartItem key={item.id}>
-              <img src={item.foto} alt={item.nome} />
-              <div>
-                <h3>{item.nome}</h3>
-                <p>{formatPrice(item.preco)}</p>
-              </div>
-              <img
-                src={trash}
-                alt="lixeira"
-                onClick={() => removeFromCart(item.id)}
-              />
-            </CartItem>
-          ))}
-        </ul>
-        <Prices>
-          Valor total <span>{formatPrice(getTotalPrice())}</span>
-        </Prices>
-        <ButtonCart onClick={openCheck}>Continuar com a entrega</ButtonCart>
-      </SideBar>
-    </CartContainer>
+    <S.CartContainer className={isOpen ? 'is-open' : ''}>
+      <S.Overlay onClick={CloseCart} />
+      <S.SideBar className={isOpen ? 'slideOpen' : 'slideClose'}>
+        {items.length > 0 ? (
+          <>
+            <ul>
+              {items.map((item) => (
+                <S.CartItem key={item.id}>
+                  <img src={item.foto} alt={item.nome} />
+                  <div>
+                    <h3>{item.nome}</h3>
+                    <span>{formatPrice(item.preco)}</span>
+                  </div>
+                  <img
+                    src={trash}
+                    alt="lixeira"
+                    onClick={() => removeFromCart(item.id)}
+                  />
+                </S.CartItem>
+              ))}
+            </ul>
+            <S.Prices>
+              Valor total <span>{formatPrice(getTotalPrice())}</span>
+            </S.Prices>
+            <S.ButtonCart onClick={openCheck}>
+              Continuar com a entrega
+            </S.ButtonCart>
+          </>
+        ) : (
+          <p>
+            O carrinho está vazio, adicione um produto para continuar a compra
+          </p>
+        )}
+      </S.SideBar>
+    </S.CartContainer>
   )
 }
 

@@ -80,6 +80,7 @@ export const InputGroup = styled.div<InputGroupProps>`
     width: 100%;
     color: ${colors.gray};
     font-weight: bold;
+    background-color: ${colors.navajoWhite};
   }
 `
 export const Button = styled(ButtonCart)`

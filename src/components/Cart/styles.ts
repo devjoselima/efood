@@ -70,6 +70,12 @@ export const SideBar = styled.aside`
   &.slideClose {
     animation-name: ${slideClose};
   }
+
+  p {
+    color: ${colors.white};
+    text-align: center;
+    font-weight: bold;
+  }
 `
 
 export const CartItem = styled.div`

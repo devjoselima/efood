@@ -7,15 +7,15 @@ import { usePurchaseMutation } from '../../services/api'
 import { RootReducer } from '../../store'
 import { closeCheckout } from '../../store/reducers/checkout'
 import { clear, openCart } from '../../store/reducers/cart'
-import { formatPrice } from '../DishCard'
+
+import { formatPrice, getTotalPrice } from '../../utils'
 
 import * as S from './styles'
 
 const Checkout = () => {
   const dispatch = useDispatch()
   const [payment, setPayment] = useState(false)
-  const [purchase, { isLoading, isError, data, isSuccess }] =
-    usePurchaseMutation()
+  const [purchase, { data, isSuccess }] = usePurchaseMutation()
   const { isOpen } = useSelector((state: RootReducer) => state.checkout)
   const { items } = useSelector((state: RootReducer) => state.cart)
 
@@ -124,12 +124,6 @@ const Checkout = () => {
     }
   }, [isSuccess, dispatch])
 
-  const getTotalPrice = () => {
-    return items.reduce((acumulator, currentPrice) => {
-      return (acumulator += currentPrice.preco)
-    }, 0)
-  }
-
   return (
     <S.Container className={isOpen ? 'is-open' : ''}>
       <S.Overlay onClick={handleCheckout} />
@@ -139,7 +133,7 @@ const Checkout = () => {
             {payment && !isSuccess && (
               <>
                 <h3>
-                  Pagamento - Valor a pagar {formatPrice(getTotalPrice())}
+                  Pagamento - Valor a pagar {formatPrice(getTotalPrice(items))}
                 </h3>
                 <S.InputGroup>
                   <label htmlFor="cardOwner">Nome do cartão</label>
@@ -227,7 +221,7 @@ const Checkout = () => {
             {!payment && !isSuccess && (
               <>
                 <h3>
-                  Pagamento - Valor a pagar {formatPrice(getTotalPrice())}
+                  Pagamento - Valor a pagar {formatPrice(getTotalPrice(items))}
                 </h3>
                 <S.InputGroup>
                   <label htmlFor="receiver">Quem irá receber</label>

@@ -4,14 +4,17 @@ import BannerDish from '../../components/BannerDish'
 import ProfileHeader from '../../components/ProfileHeader'
 import { useGetDishesQuery } from '../../services/api'
 
-import { Dish } from '../Home'
 import DishCard from '../../components/DishCard'
 
 import { ContainerList } from './styles'
 
+type DishParams = {
+  id: string
+}
+
 const Profile = () => {
-  const { id } = useParams()
-  const { data: dish } = useGetDishesQuery(id!)
+  const { id } = useParams() as DishParams
+  const { data: dish } = useGetDishesQuery(id)
 
   if (!dish) {
     return <h3>Carregando...</h3>

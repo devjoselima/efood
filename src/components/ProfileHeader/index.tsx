@@ -1,12 +1,13 @@
 import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import { RootReducer } from '../../store'
 
-import { HeaderProfile, LogoHeader } from './styles'
+import { RootReducer } from '../../store'
+import { openCart } from '../../store/reducers/cart'
 
 import fundo from '../../assets/fundo.png'
 import logo from '../../assets/logo.svg'
-import { openCart } from '../../store/reducers/cart'
+
+import * as S from './styles'
 
 const ProfileHeader = () => {
   const dispatch = useDispatch()
@@ -17,13 +18,13 @@ const ProfileHeader = () => {
   }
 
   return (
-    <HeaderProfile style={{ backgroundImage: `url(${fundo})` }}>
+    <S.HeaderProfile style={{ backgroundImage: `url(${fundo})` }}>
       <p>Restaurantes</p>
       <Link to={'/'}>
-        <LogoHeader src={logo} alt="efood" />
+        <S.LogoHeader src={logo} alt="efood" />
       </Link>
       <p onClick={OpenCart}>{items.length} produto(s) no carrinho</p>
-    </HeaderProfile>
+    </S.HeaderProfile>
   )
 }
 

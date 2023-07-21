@@ -3,22 +3,14 @@ import { useDispatch, useSelector } from 'react-redux'
 import { add, openCart } from '../../store/reducers/cart'
 import { modalClose, modalOpen } from '../../store/reducers/modal'
 import { RootReducer } from '../../store'
-
-import { Dish } from '../../pages/Home'
+import { formatPrice } from '../../utils'
 
 import close from '../../assets/fechar.png'
 
-import { Card, Modal, ModalContent, Overlay } from './styles'
+import * as S from './styles'
 
 type Props = {
   dish: Dish
-}
-
-export const formatPrice = (price: number) => {
-  return new Intl.NumberFormat('pt-BR', {
-    style: 'currency',
-    currency: 'BRL'
-  }).format(price)
 }
 
 const DishCard = ({ dish }: Props) => {
@@ -49,15 +41,15 @@ const DishCard = ({ dish }: Props) => {
 
   return (
     <>
-      <Card>
+      <S.Card>
         <img src={foto} alt={nome} />
         <h3>{nome}</h3>
         <p>{formatDescription(descricao)}</p>
         <button onClick={() => handleModal()}>Adicionar ao carrinho</button>
-      </Card>
+      </S.Card>
 
-      <Modal className={modal ? 'visible' : ''}>
-        <ModalContent className="container">
+      <S.Modal className={modal ? 'visible' : ''}>
+        <S.ModalContent className="container">
           <header>
             <img src={close} alt="fechar modal" onClick={handleModal} />
           </header>
@@ -77,9 +69,9 @@ const DishCard = ({ dish }: Props) => {
               </button>
             </div>
           </main>
-        </ModalContent>
-        <Overlay onClick={handleModal}></Overlay>
-      </Modal>
+        </S.ModalContent>
+        <S.Overlay onClick={handleModal}></S.Overlay>
+      </S.Modal>
     </>
   )
 }

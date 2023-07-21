@@ -2,13 +2,13 @@ import { useDispatch, useSelector } from 'react-redux'
 
 import { closeCart, remove } from '../../store/reducers/cart'
 import { openCheckout } from '../../store/reducers/checkout'
-
-import * as S from './styles'
 import { RootReducer } from '../../store'
 
-import { formatPrice } from '../DishCard'
+import { formatPrice, getTotalPrice } from '../../utils'
 
 import trash from '../../assets/lixeira.svg'
+
+import * as S from './styles'
 
 const Cart = () => {
   const dispatch = useDispatch()
@@ -21,12 +21,6 @@ const Cart = () => {
   const openCheck = () => {
     dispatch(openCheckout())
     dispatch(closeCart())
-  }
-
-  const getTotalPrice = () => {
-    return items.reduce((acumulator, currentPrice) => {
-      return (acumulator += currentPrice.preco)
-    }, 0)
   }
 
   const removeFromCart = (id: number) => {
@@ -56,7 +50,7 @@ const Cart = () => {
               ))}
             </ul>
             <S.Prices>
-              Valor total <span>{formatPrice(getTotalPrice())}</span>
+              Valor total <span>{formatPrice(getTotalPrice(items))}</span>
             </S.Prices>
             <S.ButtonCart onClick={openCheck}>
               Continuar com a entrega

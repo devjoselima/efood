@@ -4,24 +4,24 @@ import instagram from '../../assets/instagram.svg'
 import facebook from '../../assets/facebook.svg'
 import twitter from '../../assets/twitter.svg'
 
-import { FundoFooter, Logo, RedesSociais, TextoFooter } from './styles'
+import * as S from './styles'
 
 const Footer = () => (
-  <FundoFooter style={{ backgroundImage: `url(${fundo})` }}>
+  <S.FundoFooter style={{ backgroundImage: `url(${fundo})` }}>
     <div className="container">
-      <Logo src={logo} alt="efood" />
-      <RedesSociais>
+      <S.Logo src={logo} alt="efood" />
+      <S.RedesSociais>
         <img src={instagram} alt="instagram" />
         <img src={facebook} alt="facebook" />
         <img src={twitter} alt="twitter" />
-      </RedesSociais>
-      <TextoFooter>
+      </S.RedesSociais>
+      <S.TextoFooter>
         A efood é uma plataforma para divulgação de estabelicementos, a
         responsabilidade pela entrega,qualidade dos produtos é toda do
         estabelicimento contratado
-      </TextoFooter>
+      </S.TextoFooter>
     </div>
-  </FundoFooter>
+  </S.FundoFooter>
 )
 
 export default Footer

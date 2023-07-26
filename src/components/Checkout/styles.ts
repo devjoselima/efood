@@ -81,6 +81,10 @@ export const InputGroup = styled.div<InputGroupProps>`
     color: ${colors.gray};
     font-weight: bold;
     background-color: ${colors.navajoWhite};
+
+    &.error {
+      border: 4px solid red;
+    }
   }
 `
 export const Button = styled(ButtonCart)`

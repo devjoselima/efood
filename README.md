@@ -1,12 +1,12 @@
-<h1 align="center"> 🎮 Eplay</h1>
+<h1 align="center"> 🍴 Efood </h1>
 <p align="center">
-  <a href="https://eplay-1-tan.vercel.app/">Ver projeto</a>
+  <a href="https://efood-rho.vercel.app/">Ver projeto</a>
 </p>
 
-<img src="https://github.com/devjoselima/efood/assets/111407140/c6444825-5d5e-4752-967a-fa80752bfbba">
+<img src="https://github.com/devjoselima/efood/assets/111407140/9322b00b-e0bc-48dd-9f77-862b6563446b">
 
 <h2>❔ Descrição:</h2>
-O Eplay é um e-commerce de games desenvolvido com <strong>TypeScript</strong>, <strong>React</strong> e <strong>Styled Components</strong>.Neste site disponibiliza diversos jogos para compra, cada jogo tem sua página especifica com suas descrições, preços e imagens. Além disso voce pode adicionar quantos jogos quiser no carrinho e após isso sera redirecionado a uma tela de pagamentos, no qual aceitamos cartão e boleto. Para validação dos formularios utilizei a biblioteca <strong>YUP</strong> , para gerenciamento global dos states o <strong>Redux</strong> e para a criação de rotas a biblioteca <strong>react-router-dom</strong>
+O eFood é um e-commerce de restaurantes desenvolvido com tecnologias com TypeScript, React e Styled Components. Este projeto permite aos usuários explorar uma variedade de restaurantes, visualizar seus cardápios, adicionar pratos deliciosos ao carrinho de compras e finalizar suas compras com facilidade. Os usuários podem navegar por uma lista de restaurantes, ver os pratos disponíveis com descrições, preços e imagens, adicionar itens ao carrinho de compras e concluir a compra com informações de pagamento e entrega.
 
 
 <h2> 🚀 Tecnologias:</h2>
